@@ -16,6 +16,7 @@ const winCombos = [
 const cells = document.querySelectorAll('.cell');
 startGame();
 
+
 function startGame() {
 	document.querySelector(".endgame").style.display = "none";
 	origBoard = Array.from(Array(9).keys());
@@ -27,6 +28,7 @@ function startGame() {
 }
 
 function turnClick(square) {
+    checkTie();
     if (!checkTie()){
         if (typeof origBoard[square.target.id] == 'number') {
             if(a%2!==0){
@@ -36,10 +38,7 @@ function turnClick(square) {
                 turn(square.target.id,aiPlayer)
                 a++
             }
-           
-    }
-	
-		//  turn(square.target.id, aiPlayer);
+              }	
 	}
 }
 
@@ -79,9 +78,9 @@ function declareWinner(who) {
 	document.querySelector(".endgame .text").innerText = who;
 }
 
-// function emptySquares() {
-// 	return origBoard.filter(s => typeof s == 'number');
-// }
+function emptySquares() {
+	return origBoard.filter(s => typeof s == 'number');
+}
 
 // // function bestSpot() {
 // // 	return emptySquares()[0];
